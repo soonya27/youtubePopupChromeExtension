@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "YT Pop Out (Soso)",
+  "version": "1.0.0",
+  "description": "유튜브 영상을 항상 위에 떠 있는 팝아웃(PiP) 창으로 꺼내 봅니다.",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "팝아웃 플레이어 (Alt+P)" },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+P" },
+      "description": "팝아웃 플레이어 열기/닫기"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
